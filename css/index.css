@@ -1,7 +1,18 @@
+body {
+    font-family: 'DM Sans';
+    font-style: normal;
+}
+
 header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 42px;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 47px;
+    color: #D04F4F;
+    margin-top: 17px;
 }
 
 header img {
@@ -12,13 +23,18 @@ form {
     position: relative;
 }
 
+#search {
+    background: #E7E7E7;
+    border-radius: 5px;
+}
+
 form i {
     position: absolute;
     top: 22px;
     right: 20px;
 }
 
-.selects{
+.selects {
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -26,5 +42,162 @@ form i {
 }
 
 .selects select {
-    width: 150px;
+    width: 170px;
+    height: 69px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #FFF;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+#ingredients {
+    background: #3282F7;
+}
+
+#ustensiles {
+    background: #68D9A4;
+}
+
+#appareils {
+    background: #ED6454;
+}
+
+.recipe {
+    width: 380px;
+}
+
+.gray {
+    width: 100%;
+    height: 178px;
+    background: #C7BEBE;
+}
+
+#recettes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+
+.time {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.cardIngredients {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000000;
+    flex-basis: 50%;
+}
+
+.cardDescription {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: #000000;
+    flex-basis: 50%;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    width: 170px;
+    height: 69px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #FFF;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The search field */
+#myInput {
+    box-sizing: border-box;
+    background-image: url('searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+/* The search field when it gets focus/clicked on */
+#myInput:focus {
+    outline: 3px solid #ddd;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
 }
