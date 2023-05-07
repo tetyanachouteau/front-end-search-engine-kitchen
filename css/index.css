@@ -34,7 +34,7 @@ form i {
     right: 20px;
 }
 
-#tags{
+#tags {
     margin-top: 33px;
 }
 
@@ -58,7 +58,9 @@ form i {
 #recettes {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .title {
@@ -101,6 +103,8 @@ form i {
     line-height: 14px;
     color: #000000;
     flex-basis: 50%;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 .cardDescription {
