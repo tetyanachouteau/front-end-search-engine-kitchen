@@ -25,13 +25,13 @@
         </form>
     </div>
     <div id="tags" class="container">
-
+        <button class="btn btn-primary">Tag <i class="fa-regular fa-circle-xmark"></i></button>
     </div>
     <div class="container selects">
         <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Dropdown<i class="fa fa-caret-down"></i></button>
-            <div id="myDropdown" class="dropdown-content">
-                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+            <button data-dropdown="ingredients" class="dropbtn" >Ingredients <i class="fa fa-angle-down"></i></button>
+            <div id="ingredients" class="dropdown-content" aria-label="Ingredients">
+                <input type="text" placeholder="Rechercher un ingrédient"><i class="fa fa-angle-up"></i>
                 <a href="#about">About</a>
                 <a href="#base">Base</a>
                 <a href="#blog">Blog</a>
@@ -41,16 +41,32 @@
                 <a href="#tools">Tools</a>
             </div>
         </div>
-        <select class="form-select" id="ingredients" aria-label="Ingredients">
-            <option selected>Ingredients</option>
-            <option>Ingredient 1</option>
-        </select>
-        <select class="form-select" id="appareils" aria-label="Appareils">
-            <option selected>Appareils</option>
-        </select>
-        <select class="form-select" id="ustensiles" aria-label="Ustensiles">
-            <option selected>Ustensiles</option>
-        </select>
+        <div class="dropdown">
+            <button data-dropdown="appareils" class="dropbtn" >Appareils <i class="fa fa-angle-down"></i></button>
+            <div id="appareils" class="dropdown-content" aria-label="Appareils">
+                <input type="text" placeholder="Rechercher un ingrédient"><i class="fa fa-angle-up"></i>
+                <a href="#about">About</a>
+                <a href="#base">Base</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+                <a href="#custom">Custom</a>
+                <a href="#support">Support</a>
+                <a href="#tools">Tools</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button data-dropdown="ustensiles" class="dropbtn" >Ustensiles <i class="fa fa-angle-down"></i></button>
+            <div id="ustensiles" class="dropdown-content" aria-label="Ustensiles">
+                <input type="text" placeholder="Rechercher un ingrédient"><i class="fa fa-angle-up"></i>
+                <a href="#about">About</a>
+                <a href="#base">Base</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+                <a href="#custom">Custom</a>
+                <a href="#support">Support</a>
+                <a href="#tools">Tools</a>
+            </div>
+        </div>
     </div>
     <div id="recettes" class="container">
         <div class="card recipe">

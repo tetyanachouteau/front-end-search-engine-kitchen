@@ -34,33 +34,15 @@ form i {
     right: 20px;
 }
 
+#tags{
+    margin-top: 33px;
+}
+
 .selects {
     display: flex;
     flex-direction: row;
     justify-content: left;
     gap: 20px
-}
-
-.selects select {
-    width: 170px;
-    height: 69px;
-    border-radius: 5px;
-    font-size: 18px;
-    color: #FFF;
-    margin-top: 15px;
-    margin-bottom: 25px;
-}
-
-#ingredients {
-    background: #3282F7;
-}
-
-#ustensiles {
-    background: #68D9A4;
-}
-
-#appareils {
-    background: #ED6454;
 }
 
 .recipe {
@@ -131,7 +113,13 @@ form i {
     flex-basis: 50%;
 }
 
-/* Dropdown Button */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
 .dropbtn {
     width: 170px;
     height: 69px;
@@ -143,61 +131,86 @@ form i {
     cursor: pointer;
 }
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover,
-.dropbtn:focus {
-    background-color: #3e8e41;
+.dropbtn[data-dropdown="ingredients"] {
+    background: #3282F7;
 }
 
-/* The search field */
-#myInput {
-    box-sizing: border-box;
-    background-image: url('searchicon.png');
-    background-position: 14px 12px;
-    background-repeat: no-repeat;
-    font-size: 16px;
-    padding: 14px 20px 12px 45px;
+.dropbtn[data-dropdown="appareils"] {
+    background: #ED6454;
+}
+
+.dropbtn[data-dropdown="ustensiles"] {
+    background: #68D9A4;
+}
+
+.dropdown input {
+    font-size: 18px;
+    padding: 22px 19px 27px 19px;
     border: none;
-    border-bottom: 1px solid #ddd;
+    color: #FFF;
+    width: 100%;
 }
 
-/* The search field when it gets focus/clicked on */
-#myInput:focus {
-    outline: 3px solid #ddd;
+.dropdown input::placeholder {
+    color: #E7E7E7;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    margin-top: 15px;
-    margin-bottom: 25px;
+.dropdown input:focus {
+    outline: none;
 }
 
-/* Dropdown Content (Hidden by Default) */
+#ingredients input {
+    background: #3282F7;
+}
+
+#appareils input {
+    background: #ED6454;
+}
+
+#ustensiles input {
+    background: #68D9A4;
+}
+
+/* Pour les options de la fausse select */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    border: 1px solid #ddd;
+    top: 0px;
+    min-width: 270px;
+    border: none;
     z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dropdown-content i {
+    position: absolute;
+    top: 28px;
+    right: 21px;
+    font-size: 18px;
+    color: #FFF;
+}
+
+#ingredients {
+    background: #3282F7;
+}
+
+#appareils {
+    background: #ED6454;
+}
+
+#ustensiles {
+    background: #68D9A4;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    color: #FFF;
+    padding: 2px 16px;
     text-decoration: none;
     display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #f1f1f1
-}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {
-    display: block;
+    width: 100px;
 }
