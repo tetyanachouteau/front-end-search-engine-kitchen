@@ -76,6 +76,7 @@ function displayRecette(recettes){
         const icon = document.createElement("i");
         icon.setAttribute("class","fa-regular fa-clock");
         spanTime.textContent = " " + recette.time + " min";
+        // pour mettre l'icone avant le texte
         spanTime.prepend(icon);
         divCardHeader.appendChild(spanTitle);
         divCardHeader.appendChild(spanTime);
@@ -86,7 +87,7 @@ function displayRecette(recettes){
         ul.setAttribute("class","cardIngredients");
         recette.ingredients.forEach(ingredient => {
             const li = document.createElement("li");
-            li.textContent = ingredient.ingredient + ": " + ingredient.quantity + (ingredient.unit ? " " + ingredient.unit : "");
+            li.textContent = ingredient.ingredient + (ingredient.quantity ? ": " + ingredient.quantity : "") + (ingredient.unit ? " " + ingredient.unit : "");
             ul.appendChild(li);
         })
         divCardContent.appendChild(ul);
