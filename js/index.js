@@ -19,7 +19,7 @@ dropinput.forEach(el => {
         const filter = input.value.toUpperCase();
         const div = input.parentNode;
         const a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
+        for (let i = 0; i < a.length; i++) {
             let txtValue = a[i].textContent || a[i].innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 a[i].style.display = "";
@@ -37,26 +37,46 @@ dropinput.forEach(el => {
     })
 })
 
-async function getData() {
-    let recettes = [];
+const searchinput = document.querySelector("#search");
+searchinput.addEventListener("keyup",seachRecette);
 
+function seachRecette(){
+    let recetteSelectionne = []
+    const text2search = searchinput.value.toUpperCase();
+    recettesToutes.forEach(recette => {
+        if(text2search.length > 3){
+            if(recette.name.toUpperCase().indexOf(text2search)!=-1){
+                recetteSelectionne.push(recette);
+            }
+        } 
+    })
+
+    if(text2search.length > 3){
+        displayRecette(recetteSelectionne);
+    }else{
+        displayRecette(recettesToutes);
+    }
+}
+
+let recettesToutes = [];
+async function getData() {
     await fetch('data/plats.json')
         .then(function (response) {
             console.log(response)
             return response.json();
         })
         .then(function (json) {
-            recettes = json;
+            recettesToutes = json;
         });
     
-    displayRecette(recettes);
+    displayRecette(recettesToutes);
 }
 
 function displayRecette(recettes){
     const recettesDiv = document.querySelector("#recettes");
 
     // on vide la div de recettes
-    recettes.innerHtml = "";
+    recettesDiv.innerHTML = "";
 
     recettes.forEach(recette => {
         const divCard = document.createElement("div");
