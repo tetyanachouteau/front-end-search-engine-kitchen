@@ -58,7 +58,13 @@ function displayRecette(recettes){
     // on vide la div de recettes
     recettes.innerHtml = "";
 
+    let ingredients = [];
+    let appareils = [];
+    let ustensiles = [];
+
     recettes.forEach(recette => {
+        appareils.push(recette.appliance);
+        ustensiles = ustensiles.concat(recette.ustensils);
         const divCard = document.createElement("div");
         divCard.setAttribute("class","card recipe");
         const divCardImg = document.createElement("div");
@@ -86,6 +92,7 @@ function displayRecette(recettes){
         const ul = document.createElement("ul");
         ul.setAttribute("class","cardIngredients");
         recette.ingredients.forEach(ingredient => {
+            ingredients.push(ingredient.ingredient);
             const li = document.createElement("li");
             li.textContent = ingredient.ingredient + (ingredient.quantity ? ": " + ingredient.quantity : "") + (ingredient.unit ? " " + ingredient.unit : "");
             ul.appendChild(li);
@@ -99,6 +106,23 @@ function displayRecette(recettes){
         divCard.appendChild(divCardBody);
 
         recettesDiv.appendChild(divCard);
+    })
+
+    displayOptions("ingredients",ingredients);
+    displayOptions("ustensiles",ustensiles);
+    displayOptions("appareils",appareils);
+}
+
+function displayOptions(type, tab){
+    const divOptions = document.querySelector("#"+type+" .div-options");
+
+    divOptions.innerHTML = ""
+
+    tab.forEach(el => {
+        const a = document.createElement("a");
+        a.setAttribute("href","#" + el.toLowerCase());
+        a.textContent = el.toLowerCase();
+        divOptions.appendChild(a);
     })
 }
 

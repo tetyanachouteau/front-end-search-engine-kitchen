@@ -190,6 +190,13 @@ form i {
     justify-content: space-between;
 }
 
+.div-options {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .dropdown-content i {
     position: absolute;
     top: 28px;
