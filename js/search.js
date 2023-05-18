@@ -12,20 +12,24 @@ export function seachRecette() {
 
     if (text2search.length <= 3) {
         // TODO a revoir
-        View.displayCards(recettesToutes);
+        //View.displayCards(recettesToutes);
     } else {
         let recetteSelectionne = []
         recettesToutes.forEach(recette => {
-            if (text2search.length > 3) {
-                if (recette.name.toUpperCase().indexOf(text2search) != -1) {
-                    recetteSelectionne.push(recette);
-                }
+            if (recette.name.toUpperCase().indexOf(text2search) != -1) {
+                recetteSelectionne.push(recette);
+            }else if(recette.description.toUpperCase().indexOf(text2search) != -1) {
+                recetteSelectionne.push(recette);
+            }else if(seachInIngredients(recette,text2search)) {
+                recetteSelectionne.push(recette);
             }
         })
         View.displayCards(recetteSelectionne);
     }
+}
 
-
+function seachInIngredients(recette, text2search){
+    return recette.ingredients.filter(ingredient => ingredient.ingredient.toUpperCase().indexOf(text2search) != -1).length > 0;
 }
 
 export default {
