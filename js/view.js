@@ -2,7 +2,7 @@ export function displayCards(recettes){
     const recettesDiv = document.querySelector("#recettes");
 
     // on vide la div de recettes
-    recettes.innerHtml = "";
+    recettesDiv.innerHTML = "";
 
     let ingredients = [];
     let appareils = [];
