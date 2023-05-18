@@ -1,3 +1,6 @@
+import * as View from './view.js';
+import * as Search from './search.js';
+
 const dropbtn = document.querySelectorAll(".dropbtn");
 dropbtn.forEach(el => {
     // quand on click sur le faux select
@@ -38,28 +41,11 @@ dropinput.forEach(el => {
 })
 
 const searchinput = document.querySelector("#search");
-searchinput.addEventListener("keyup",seachRecette);
+searchinput.addEventListener("keyup",Search.seachRecette);
 
-function seachRecette(){
-    let recetteSelectionne = []
-    const text2search = searchinput.value.toUpperCase();
-    recettesToutes.forEach(recette => {
-        if(text2search.length > 3){
-            if(recette.name.toUpperCase().indexOf(text2search)!=-1){
-                recetteSelectionne.push(recette);
-            }
-        } 
-    })
 
-    if(text2search.length > 3){
-        displayRecette(recetteSelectionne);
-    }else{
-        displayRecette(recettesToutes);
-    }
-}
-
-let recettesToutes = [];
 async function getData() {
+    let recettesToutes = [];
     await fetch('data/plats.json')
         .then(function (response) {
             console.log(response)
@@ -68,58 +54,10 @@ async function getData() {
         .then(function (json) {
             recettesToutes = json;
         });
+
+    Search.initData(recettesToutes);
     
-    displayRecette(recettesToutes);
-}
-
-function displayRecette(recettes){
-    const recettesDiv = document.querySelector("#recettes");
-
-    // on vide la div de recettes
-    recettesDiv.innerHTML = "";
-
-    recettes.forEach(recette => {
-        const divCard = document.createElement("div");
-        divCard.setAttribute("class","card recipe");
-        const divCardImg = document.createElement("div");
-        divCardImg.setAttribute("class","card-img-top gray");
-        divCard.appendChild(divCardImg);
-        const divCardBody = document.createElement("div");
-        divCardBody.setAttribute("class","card-body");
-        const divCardHeader = document.createElement("div")
-        divCardHeader.setAttribute("class","cardHeader");
-        const spanTitle = document.createElement("span");
-        spanTitle.setAttribute("class","title");
-        spanTitle.textContent = recette.name;
-        const spanTime = document.createElement("span");
-        spanTime.setAttribute("class","time");
-        const icon = document.createElement("i");
-        icon.setAttribute("class","fa-regular fa-clock");
-        spanTime.textContent = " " + recette.time + " min";
-        // pour mettre l'icone avant le texte
-        spanTime.prepend(icon);
-        divCardHeader.appendChild(spanTitle);
-        divCardHeader.appendChild(spanTime);
-        divCardBody.appendChild(divCardHeader);
-        const divCardContent = document.createElement("div");
-        divCardContent.setAttribute("class","cardContent");
-        const ul = document.createElement("ul");
-        ul.setAttribute("class","cardIngredients");
-        recette.ingredients.forEach(ingredient => {
-            const li = document.createElement("li");
-            li.textContent = ingredient.ingredient + (ingredient.quantity ? ": " + ingredient.quantity : "") + (ingredient.unit ? " " + ingredient.unit : "");
-            ul.appendChild(li);
-        })
-        divCardContent.appendChild(ul);
-        const cardDescription = document.createElement("p");
-        cardDescription.setAttribute("class","cardDescription");
-        cardDescription.textContent = recette.description;
-        divCardContent.appendChild(cardDescription);
-        divCardBody.appendChild(divCardContent);
-        divCard.appendChild(divCardBody);
-
-        recettesDiv.appendChild(divCard);
-    })
+    View.displayCards(recettesToutes);
 }
 
 getData();
