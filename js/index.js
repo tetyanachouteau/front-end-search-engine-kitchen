@@ -31,13 +31,6 @@ dropinput.forEach(el => {
             }
         }
     })
-    // quand on perd le focus on cache la div
-    // click sur un "option" ou click hors de la div
-    el.addEventListener("blur", (e) => {
-        const input = e.currentTarget;
-        const div = input.parentNode;
-        div.style.display = "none";
-    })
 })
 
 const searchinput = document.querySelector("#search");

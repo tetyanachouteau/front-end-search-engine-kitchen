@@ -36,6 +36,14 @@ form i {
 
 #tags {
     margin-top: 33px;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+}
+
+#tags button.btn.btn-primary.ustensiles {
+    background: #68D9A4;
+    border-color: #68D9A4;
 }
 
 .selects {
@@ -178,8 +186,8 @@ form i {
 /* Pour les options de la fausse select */
 .dropdown-content {
     display: none;
-    position: absolute;
-    top: 0px;
+    position: relative;
+    top: -70px;
     min-width: 270px;
     border: none;
     z-index: 1;
@@ -224,4 +232,5 @@ form i {
     text-decoration: none;
     display: block;
     width: 100px;
+    white-space: nowrap;
 }

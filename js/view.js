@@ -1,3 +1,5 @@
+import * as Search from './search.js';
+
 export function displayCards(recettes){
     const recettesDiv = document.querySelector("#recettes");
 
@@ -54,9 +56,20 @@ export function displayCards(recettes){
         recettesDiv.appendChild(divCard);
     })
 
+    //Supprime les doublons
+    ingredients = cleanUpTags(ingredients);
+    ustensiles = cleanUpTags(ustensiles);
+    appareils = cleanUpTags(appareils);
+
     displayOptions("ingredients",ingredients);
     displayOptions("ustensiles",ustensiles);
     displayOptions("appareils",appareils);
+}
+
+function cleanUpTags(tags){
+    return tags.filter((el,index,array) => {
+        return array.indexOf(el) == index && el
+    });
 }
 
 function displayOptions(type, tab){
@@ -67,9 +80,32 @@ function displayOptions(type, tab){
     tab.forEach(el => {
         const a = document.createElement("a");
         a.setAttribute("href","#" + el.toLowerCase());
+        a.addEventListener("click",clickTagDropDown);
         a.textContent = el.toLowerCase();
         divOptions.appendChild(a);
     })
+}
+
+function createTagButton(type,tag){
+    const tags = document.querySelector("#tags");
+    const btn = document.createElement("button");
+    btn.setAttribute("class","btn btn-primary " + type);
+    btn.textContent= tag;
+    const i = document.createElement("i");
+    i.setAttribute("class","fa-regular fa-circle-xmark");
+    btn.appendChild(i);
+    tags.appendChild(btn);
+}
+
+function clickTagDropDown(e) {
+    // quand on perd le click sur le tag de la dropdown on cache la div
+    const a = e.currentTarget;
+    const div = a.parentNode.parentNode;
+    div.style.display = "none";
+    // on creer le tag
+    createTagButton(div.id,a.getAttribute("href"));
+    // puis on appelle la recherche
+    Search.seachRecette(e);
 }
 
 export default {
