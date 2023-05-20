@@ -1,20 +1,10 @@
-import * as View from './view.js';
-
-let recettesToutes = [];
-
-export function initData(recettes) {
-    recettesToutes = recettes;
-}
-
-export function seachRecette() {
-    const searchinput = document.querySelector("#search");
-    const text2search = searchinput.value.toUpperCase();
+export function seachRecette(recettesToutes,text2search,tags) {
+    let recetteSelectionne = [];
 
     if (text2search.length <= 3) {
         // TODO a revoir
-        //View.displayCards(recettesToutes);
+        recetteSelectionne = recettesToutes;
     } else {
-        let recetteSelectionne = []
         recettesToutes.forEach(recette => {
             if (recette.name.toUpperCase().indexOf(text2search) != -1) {
                 recetteSelectionne.push(recette);
@@ -24,8 +14,9 @@ export function seachRecette() {
                 recetteSelectionne.push(recette);
             }
         })
-        View.displayCards(recetteSelectionne);
     }
+
+    return recetteSelectionne;
 }
 
 function seachInIngredients(recette, text2search){
@@ -34,5 +25,4 @@ function seachInIngredients(recette, text2search){
 
 export default {
     seachRecette,
-    initData
 }
