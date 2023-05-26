@@ -1,6 +1,6 @@
 export function seachRecette(recettesToutes, text2search, tags) {
     let recetteSelectionne = [];
-
+    //debugger;
     if (text2search.length <= 3 && tags.length == 0) {
         recetteSelectionne = recettesToutes;
     } else {
@@ -22,15 +22,17 @@ export function seachRecette(recettesToutes, text2search, tags) {
             if (tags.length > 0 && recetteSelectionnable) {
                 tags.every((tag) => {
                     if (tag.type == "ustensiles") {
-                        if (recetteSelectionnable.ustensils.filter((ustensile) => { return ustensile.toLowerCase() == tag.name }).length == 0) {
+                        if (recetteSelectionnable.ustensils.filter((ustensile) => {
+                                return ustensile.toLowerCase() == tag.name
+                            }).length == 0) {
                             recetteSelectionnable = null;
                             return false;
                         }
                     }
                     if (tag.type == "ingredients") {
-                        if (recetteSelectionnable.ingredients.filter((ingredient) => { 
-                            return ingredient.ingredient.toLowerCase() == tag.name 
-                        }).length == 0) {
+                        if (recetteSelectionnable.ingredients.filter((ingredient) => {
+                                return ingredient.ingredient.toLowerCase() == tag.name
+                            }).length == 0) {
                             recetteSelectionnable = null;
                             return false;
                         }
@@ -50,8 +52,9 @@ export function seachRecette(recettesToutes, text2search, tags) {
             }
         })
     }
-
+    console.log("voilà", recetteSelectionne.length);
     return recetteSelectionne;
+
 }
 
 function seachInIngredients(recette, text2search) {
