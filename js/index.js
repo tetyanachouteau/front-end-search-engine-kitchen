@@ -1,5 +1,6 @@
 import * as View from './view.js';
 import * as Search from './search.js';
+//import searchRecette from './search.js';
 
 function searchDisplay(recettes){
     const searchvalue=document.getElementById('search').value;

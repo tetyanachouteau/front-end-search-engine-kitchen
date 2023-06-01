@@ -1,3 +1,4 @@
+// rend accessible la methode searchRecette via l'import 
 export function seachRecette(recettesToutes, text2search, tags) {
     let recetteSelectionne = [];
     //debugger;

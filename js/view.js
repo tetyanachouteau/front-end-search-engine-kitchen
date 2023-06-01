@@ -154,6 +154,12 @@ dropbtn.forEach(el => {
     // quand on click sur le faux select
     el.addEventListener("click", (e) => {
         const btn = e.currentTarget;
+        // ferme toutes les dropdowns
+        const divs = document.querySelectorAll(".dropdown-content");
+        divs.forEach(div => {
+            div.style.display = "none";
+        })
+        // cherche la dropdown correspondante au bouton
         const div = document.querySelector("#" + btn.dataset.dropdown);
         //on affiche et on met le focus sur le champs de recherche
         div.style.display = "flex";
@@ -179,6 +185,17 @@ dropinput.forEach(el => {
                 a[i].style.display = "none";
             }
         }
+    })
+})
+
+// event qui ferme la dropbox
+const iUp = document.querySelectorAll(".dropdown-content i");
+iUp.forEach(el => {
+    // quand on click sur le faux select
+    el.addEventListener("click", (e) => {
+        const div = e.currentTarget.parentNode;
+        //on masque la div
+        div.style.display = "none";
     })
 })
 

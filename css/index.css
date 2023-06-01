@@ -64,6 +64,8 @@ form i {
     display: flex;
     flex-direction: row;
     justify-content: left;
+    position: absolute;
+    left: 180px;
     gap: 20px
 }
 
@@ -82,6 +84,8 @@ form i {
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    position: relative;
+    top: 120px;
     gap: 10px;
 }
 
@@ -202,7 +206,7 @@ form i {
     display: none;
     position: relative;
     top: -70px;
-    min-width: 270px;
+    max-width: 510px;
     border: none;
     z-index: 1;
     border-radius: 5px;
@@ -213,10 +217,8 @@ form i {
 }
 
 .div-options {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 170px);
 }
 
 .dropdown-content i {
@@ -245,6 +247,7 @@ form i {
     padding: 2px 16px;
     text-decoration: none;
     display: block;
-    width: 100px;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
