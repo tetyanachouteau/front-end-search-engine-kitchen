@@ -4,7 +4,7 @@ function cleanUpTags(tags, selectedTags) {
         // on supprimer les éventuels element vides
         // on supprimer le tag si il a été trouvé dans la liste des tags séléectionnés pour la recherche
         return array.indexOf(tag) == index && tag && selectedTags.filter((selectedTag) => { return selectedTag.name == tag }).length == 0;
-    }).sort();
+    }).sort(new Intl.Collator('fr').compare);
 }
 
 function simuleKeyUp() {
