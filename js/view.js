@@ -12,6 +12,12 @@ function simuleKeyUp() {
     document.querySelector("#search").dispatchEvent(new KeyboardEvent('keyup', { 'key': 'Enter' }));
 }
 
+// utiliser pour rafraichir la recherche des dropbox après une nouvelle recherche
+function simuleKeyUpDropBox() {
+    // on recherche l'input des dropbox et on lance l'event appuie sur la touche enter
+    document.querySelectorAll(".dropdown-content input").forEach((dropdox) => dropdox.dispatchEvent(new KeyboardEvent('keyup', { 'key': 'Enter' })));
+}
+
 function displayOptions(type, tab) {
     // on cherche la div qui contient les "options"
     const divOptions = document.querySelector("#" + type + " .div-options");
@@ -152,6 +158,9 @@ export function displayCards(recettes, tags) {
     displayOptions("ingredients", ingredients);
     displayOptions("ustensiles", ustensiles);
     displayOptions("appareils", appareils);
+
+    // rafaichi la recherche dans la dropbox après une nouvelle recherche
+    simuleKeyUpDropBox();
 }
 
 // event qui affiche la dropbox 
