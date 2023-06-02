@@ -137,6 +137,12 @@ export function displayCards(recettes, tags) {
         recettesDiv.appendChild(divCard);
     })
 
+    // si aucune recette trouvée la div est vide
+    if(recettesDiv.innerHTML == "") {
+        // on ajouter un titre qui indique qu'il n'y a pas de résultat
+        recettesDiv.innerHTML = "<h3>Aucun résultat trouvé. Modifiez vos critères de recherche...</h3>"
+    }
+
     //Supprime les doublons des tags (car pluiseurs recettes peuvent avoir les mêmes élements)
     ingredients = cleanUpTags(ingredients, tags.filter((tag) => { return tag.type == "ingredients" }));
     ustensiles = cleanUpTags(ustensiles, tags.filter((tag) => { return tag.type == "ustensiles" }));
