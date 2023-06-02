@@ -35,11 +35,12 @@ function displayOptions(type, tab) {
             const div = a.parentNode.parentNode;
             div.style.display = "none";
             // on creer le tag
-            createTagButton(div.id, a.getAttribute("href").replace("#", ""));
+            createTagButton(div.id, a.textContent);
             // simule la saisie sur le champs de recherche pour lancer la recherche
             simuleKeyUp();
         });
-        a.textContent = el;
+        // première lettre en Majuscule et reste ne change pas
+        a.textContent = el.charAt(0).toUpperCase() + el.slice(1);
         divOptions.appendChild(a);
     })
 }
@@ -71,7 +72,7 @@ export function getSelectedTags() {
     const tagsInfo = [];
     tags.forEach((tag) => {
         tagsInfo.push({
-            name: tag.textContent.trim(),
+            name: tag.textContent.toLowerCase().trim(),
             type: tag.className.replace("btn", "").trim()
         });
     })
