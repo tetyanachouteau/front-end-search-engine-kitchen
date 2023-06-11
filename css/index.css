@@ -141,6 +141,12 @@ form i {
     line-height: 100%;
     color: #000000;
     flex-basis: 50%;
+    height: 95px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
 }
 
 .dropdown {
