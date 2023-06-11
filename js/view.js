@@ -3,19 +3,25 @@ function cleanUpTags(tags, selectedTags) {
         // on supprimer les doublons ( = l'index de l'element n'est pas le premier index trouvé dans le tableau)
         // on supprimer les éventuels element vides
         // on supprimer le tag si il a été trouvé dans la liste des tags séléectionnés pour la recherche
-        return array.indexOf(tag) == index && tag && selectedTags.filter((selectedTag) => { return selectedTag.name == tag }).length == 0;
+        return array.indexOf(tag) == index && tag && selectedTags.filter((selectedTag) => {
+            return selectedTag.name == tag
+        }).length == 0;
     }).sort(new Intl.Collator('fr').compare);
 }
 
 function simuleKeyUp() {
     // on recherche l'input d'id seach et on lance l'event appuie sur la touche enter
-    document.querySelector("#search").dispatchEvent(new KeyboardEvent('keyup', { 'key': 'Enter' }));
+    document.querySelector("#search").dispatchEvent(new KeyboardEvent('keyup', {
+        'key': 'Enter'
+    }));
 }
 
 // utiliser pour rafraichir la recherche des dropbox après une nouvelle recherche
 function simuleKeyUpDropBox() {
     // on recherche l'input des dropbox et on lance l'event appuie sur la touche enter
-    document.querySelectorAll(".dropdown-content input").forEach((dropdox) => dropdox.dispatchEvent(new KeyboardEvent('keyup', { 'key': 'Enter' })));
+    document.querySelectorAll(".dropdown-content input").forEach((dropdox) => dropdox.dispatchEvent(new KeyboardEvent('keyup', {
+        'key': 'Enter'
+    })));
 }
 
 function displayOptions(type, tab) {
@@ -97,7 +103,9 @@ export function displayCards(recettes, tags) {
         // ajout les appareils de la recettes dans la liste des tags appareils
         appareils.push(recette.appliance.toLowerCase());
         // ajout les ustensiles de la recttes dans la liste des tags ustensiles
-        ustensiles = ustensiles.concat(recette.ustensils.map((ustensile) => { return ustensile.toLowerCase(); }));
+        ustensiles = ustensiles.concat(recette.ustensils.map((ustensile) => {
+            return ustensile.toLowerCase();
+        }));
         // crée le html de la carte recette
         const divCard = document.createElement("div");
         divCard.setAttribute("class", "card recipe");
@@ -145,15 +153,21 @@ export function displayCards(recettes, tags) {
     })
 
     // si aucune recette trouvée la div est vide
-    if(recettesDiv.innerHTML == "") {
+    if (recettesDiv.innerHTML == "") {
         // on ajouter un titre qui indique qu'il n'y a pas de résultat
         recettesDiv.innerHTML = "<h3>Aucun résultat trouvé. Modifiez vos critères de recherche...</h3>"
     }
 
     //Supprime les doublons des tags (car pluiseurs recettes peuvent avoir les mêmes élements)
-    ingredients = cleanUpTags(ingredients, tags.filter((tag) => { return tag.type == "ingredients" }));
-    ustensiles = cleanUpTags(ustensiles, tags.filter((tag) => { return tag.type == "ustensiles" }));
-    appareils = cleanUpTags(appareils, tags.filter((tag) => { return tag.type == "appareils" }));
+    ingredients = cleanUpTags(ingredients, tags.filter((tag) => {
+        return tag.type == "ingredients"
+    }));
+    ustensiles = cleanUpTags(ustensiles, tags.filter((tag) => {
+        return tag.type == "ustensiles"
+    }));
+    appareils = cleanUpTags(appareils, tags.filter((tag) => {
+        return tag.type == "appareils"
+    }));
 
     //remplit les options de tags (donc filtrés par rapport au recettes sélectionné et au tags déjà sélectionnées)
     displayOptions("ingredients", ingredients);
@@ -189,18 +203,21 @@ const dropinput = document.querySelectorAll(".dropdown input");
 dropinput.forEach(el => {
     // recherche dans la liste des "options" (a)
     el.addEventListener("keyup", (e) => {
+        // récupère le texte recherché dans la dropbox
         const input = e.currentTarget;
-        const filter = input.value.toUpperCase();
+        const filter = input.value.trim().toUpperCase();
+
+        // récupère les a dans la dopbox (option)
         const div = input.parentNode;
-        const a = div.getElementsByTagName("a");
-        for (let i = 0; i < a.length; i++) {
-            let txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
+        const as = div.querySelectorAll("a");
+        as.forEach((a) => {
+            let txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1 || filter == "") {
+                a.style.display = "";
             } else {
-                a[i].style.display = "none";
+                a.style.display = "none";
             }
-        }
+        })
     })
 })
 
