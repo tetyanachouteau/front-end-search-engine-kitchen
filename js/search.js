@@ -2,13 +2,13 @@
 export function seachRecette(recettesToutes, text2search, tags) {
     let recetteSelectionne = [];
     //debugger;
-    if (text2search.length <= 3 && tags.length == 0) {
+    if (text2search.length < 3 && tags.length == 0) {
         recetteSelectionne = recettesToutes;
     } else {
         recettesToutes.forEach(recette => {
             let recetteSelectionnable;
 
-            if (text2search.length > 3) {
+            if (text2search.length > 2) {
                 if (recette.name.toUpperCase().indexOf(text2search) != -1) {
                     recetteSelectionnable = recette;
                 } else if (recette.description.toUpperCase().indexOf(text2search) != -1) {
