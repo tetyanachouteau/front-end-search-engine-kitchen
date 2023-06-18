@@ -210,14 +210,20 @@ dropinput.forEach(el => {
         // récupère les a dans la dopbox (option)
         const div = input.parentNode;
         const as = div.querySelectorAll("a");
+        const nbAs = as.length;
+        let nbAsHidden = 0;
         as.forEach((a) => {
             let txtValue = a.textContent || a.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1 || filter == "") {
                 a.style.display = "";
             } else {
                 a.style.display = "none";
+                nbAsHidden ++;
             }
         })
+        if( nbAs == nbAsHidden){
+            console.log("Pas dans la liste");
+        }
     })
 })
 
