@@ -3,6 +3,8 @@ import * as Search from './search.js';
 //import searchRecette from './search.js';
 
 function searchDisplay(recettes){
+    // recupère dans le html le tag qui a pour id seach et ensuite sa valeur 
+    // donc le texte que l'utilisateur a saisie ex:coco
     const searchvalue=document.getElementById('search').value;
     // on récupère les tags sélectionnes
     const tags = View.getSelectedTags();

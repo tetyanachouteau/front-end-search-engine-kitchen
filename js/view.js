@@ -75,10 +75,16 @@ function createTagButton(type, tag) {
 export function getSelectedTags() {
     // on récupère tous les tags créés
     const tags = document.querySelectorAll("#tags button");
+    // futur resultat
     const tagsInfo = [];
     tags.forEach((tag) => {
+        // push = insert dans le tableau de resultat
         tagsInfo.push({
+            // tag html (bouton), on recupère le texte qui est affiché sur le bouton (textcontent)
+            // On met en minuscule (lowercase) et on enleve les espaces en trop s'il y en a (trim)
             name: tag.textContent.toLowerCase().trim(),
+            // pareil mais sur la classe du bouton (on enleve la chaine "btn")
+            // ex : bouton Bol - classe = btn ustensiles => type ustensile
             type: tag.className.replace("btn", "").trim()
         });
     })
