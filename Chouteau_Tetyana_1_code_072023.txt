@@ -1,0 +1,2 @@
+option methode array : https://github.com/tetyanachouteau/front-end-search-engine-kitchen/tree/option1
+option methode for : https://github.com/tetyanachouteau/front-end-search-engine-kitchen/tree/option2
