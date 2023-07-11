@@ -42,7 +42,7 @@ export function seachRecette(recettesToutes, text2search, tags) {
                 recetteSelectionnable = recette;
             }
 
-            // maintenant on vérifie les tags 
+            // maintenant on vérifie les tags (ail)
             if (tags.length > 0 && recetteSelectionnable) {
                 // on a des tags selectionnés par l'utilisateur et on a trouvé une recette qui contient le texte
                 // on parcours tous les tags séléctionné par l'utilisateur.

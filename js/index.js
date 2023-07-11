@@ -30,4 +30,5 @@ async function getData() {
     searchDisplay(recettesToutes);
 }
 
+// pour lancer la fonction getData au chargement de la page
 getData();

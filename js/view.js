@@ -36,6 +36,7 @@ function displayOptions(type, tab) {
         const a = document.createElement("a");
         a.setAttribute("href", "#" + el);
         a.addEventListener("click", (e) => {
+           // console.log('clickTag');
             // quand on click sur le tag de la dropdown on cache la div
             const a = e.currentTarget;
             const div = a.parentNode.parentNode;
@@ -184,7 +185,7 @@ export function displayCards(recettes, tags) {
     simuleKeyUpDropBox();
 }
 
-// event qui affiche la dropbox 
+// event qui affiche 3 dropbox s
 const dropbtn = document.querySelectorAll(".dropbtn");
 dropbtn.forEach(el => {
     // quand on click sur le faux select
@@ -199,7 +200,9 @@ dropbtn.forEach(el => {
         const div = document.querySelector("#" + btn.dataset.dropdown);
         //on affiche et on met le focus sur le champs de recherche
         div.style.display = "flex";
+        //recuperation du champs recherche du drobdox: 1 imput=0 (sinon donner noms chaque fois)
         const input = div.getElementsByTagName("input")[0];
+        //actiovation champs recherch
         input.focus();
     })
 })
@@ -217,7 +220,8 @@ dropinput.forEach(el => {
         const div = input.parentNode;
         const as = div.querySelectorAll("a");
         as.forEach((a) => {
-            let txtValue = a.textContent || a.innerText;
+            // a(lien, text affiché) >recupere la valeur "bol" (faut lien)
+            let txtValue = a.textContent;
             if (txtValue.toUpperCase().indexOf(filter) > -1 || filter == "") {
                 a.style.display = "";
             } else {
@@ -227,11 +231,12 @@ dropinput.forEach(el => {
     })
 })
 
-// event qui ferme la dropbox
+// event qui ferme la dropbox "i"=icon
 const iUp = document.querySelectorAll(".dropdown-content i");
 iUp.forEach(el => {
     // quand on click sur le faux select
-    el.addEventListener("click", (e) => {
+    el.addEvent("click", (e) => {
+        //e.i i.dro
         const div = e.currentTarget.parentNode;
         //on masque la div
         div.style.display = "none";
