@@ -235,7 +235,7 @@ dropinput.forEach(el => {
 const iUp = document.querySelectorAll(".dropdown-content i");
 iUp.forEach(el => {
     // quand on click sur le faux select
-    el.addEvent("click", (e) => {
+    el.addEventListener("click", (e) => {
         //e.i i.dro
         const div = e.currentTarget.parentNode;
         //on masque la div
