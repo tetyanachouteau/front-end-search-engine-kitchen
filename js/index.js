@@ -1,57 +1,34 @@
 import * as View from './view.js';
+import * as Search from './search.js';
+//import searchRecette from './search.js';
 
-const dropbtn = document.querySelectorAll(".dropbtn");
-dropbtn.forEach(el => {
-    // quand on click sur le faux select
-    el.addEventListener("click", (e) => {
-        const btn = e.currentTarget;
-        const div = document.querySelector("#" + btn.dataset.dropdown);
-        //on affiche et on met le focus sur le champs de recherche
-        div.style.display = "flex";
-        const input = div.getElementsByTagName("input")[0];
-        input.focus();
-    })
-})
-
-const dropinput = document.querySelectorAll(".dropdown input");
-dropinput.forEach(el => {
-    // recherche dans la liste des "options" (a)
-    el.addEventListener("keyup", (e) => {
-        const input = e.currentTarget;
-        const filter = input.value.toUpperCase();
-        const div = input.parentNode;
-        const a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
-            let txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
-            } else {
-                a[i].style.display = "none";
-            }
-        }
-    })
-    // quand on perd le focus on cache la div
-    // click sur un "option" ou click hors de la div
-    el.addEventListener("blur", (e) => {
-        const input = e.currentTarget;
-        const div = input.parentNode;
-        div.style.display = "none";
-    })
-})
-
+function searchDisplay(recettes){
+    // recupère dans le html le tag qui a pour id seach et ensuite sa valeur 
+    // donc le texte que l'utilisateur a saisie ex:coco
+    const searchvalue=document.getElementById('search').value;
+    // on récupère les tags sélectionnes
+    const tags = View.getSelectedTags();
+    // on recherche les recettes qui correspond au tags sélectionnés et au champs de saise
+    const recetteSelectionne = Search.seachRecette(recettes,searchvalue.toUpperCase(), tags);
+    // on les affiches
+    View.displayCards(recetteSelectionne, tags);
+    
+}
+// récupère les données et les affiches
 async function getData() {
-    let recettes = [];
+    let recettesToutes = [];
+    const response = await fetch('data/plats.json');
+    recettesToutes= await response.json();
 
-    await fetch('data/plats.json')
-        .then(function (response) {
-            console.log(response)
-            return response.json();
-        })
-        .then(function (json) {
-            recettes = json;
-        });
-
-    View.displayCards(recettes);
+    // event keyup du champs de rechercher
+    const searchinput = document.querySelector("#search");
+    searchinput.addEventListener("keyup", () => {
+        searchDisplay(recettesToutes);
+    });
+    
+    // au début il n'y a pas de tags sélectionnés et toutes les recettes sont à afficher
+    searchDisplay(recettesToutes);
 }
 
+// pour lancer la fonction getData au chargement de la page
 getData();
